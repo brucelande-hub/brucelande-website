@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Story &mdash; Island in the Sea | Bruce Lande</title>
+    <meta name="description" content="From Bruce Lande's memoir-in-progress. Six decades of guitar, the people who shaped the journey, and how Holden Beach became the island in the sea.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --color-dark: #1a1a2e;
+            --color-accent: #c9a227;
+            --color-accent-light: #e6c655;
+            --color-warm: #f5f0e8;
+            --color-white: #ffffff;
+            --color-text: #2c2c2c;
+            --color-muted: #6b6b6b;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Open Sans', Arial, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            line-height: 1.6;
+            background: var(--color-white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        nav ul { list-style: none; display: flex; gap: 1.8rem; }
+
+        nav ul li a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active { color: var(--color-accent); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px; height: 3px;
+            background: var(--color-white);
+            margin: 5px 0;
+        }
+
+        /* Story Hero */
+        .story-hero {
+            min-height: 60vh;
+            background: url('images/bruce-bearded-guitar.png') center 30% / cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            margin-top: 0;
+        }
+
+        .story-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.2) 0%,
+                rgba(0,0,0,0.3) 40%,
+                rgba(0,0,0,0.8) 90%,
+                rgba(0,0,0,0.95) 100%
+            );
+        }
+
+        .story-hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 3rem;
+            max-width: 800px;
+        }
+
+        .story-hero .label {
+            font-size: 0.85rem;
+            color: var(--color-accent-light);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .story-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.4rem;
+            font-weight: 900;
+            color: var(--color-white);
+            line-height: 1.1;
+            margin-bottom: 0.6rem;
+            font-style: italic;
+        }
+
+        .story-hero .subtitle {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.85);
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        /* Sections */
+        section { padding: 4rem 2rem; }
+
+        .container { max-width: 760px; margin: 0 auto; }
+
+        .chapter {
+            background: var(--color-white);
+        }
+
+        .chapter:nth-of-type(even) {
+            background: var(--color-warm);
+        }
+
+        .chapter-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--color-accent);
+            margin-bottom: 0.6rem;
+        }
+
+        .chapter h2 {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            color: var(--color-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .chapter h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--color-dark);
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .chapter p {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: var(--color-text);
+            margin-bottom: 1.2rem;
+        }
+
+        .chapter p strong {
+            color: var(--color-dark);
+        }
+
+        .chapter .lead {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--color-muted);
+            border-left: 4px solid var(--color-accent);
+            padding-left: 1.4rem;
+            margin: 1.5rem 0;
+            line-height: 1.7;
+        }
+
+        .chapter blockquote {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--color-text);
+            background: var(--color-white);
+            border-left: 4px solid var(--color-accent);
+            padding: 1.4rem 1.8rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .chapter:nth-of-type(even) blockquote {
+            background: var(--color-white);
+        }
+
+        .chapter blockquote .attribution {
+            display: block;
+            margin-top: 0.8rem;
+            font-style: normal;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            font-weight: 600;
+        }
+
+        .chapter ul.dedication-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .chapter ul.dedication-list li {
+            padding: 0.5rem 0;
+            font-size: 1rem;
+            color: var(--color-text);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            line-height: 1.6;
+        }
+
+        .chapter ul.dedication-list li:last-child {
+            border-bottom: none;
+        }
+
+        .chapter ul.dedication-list strong {
+            color: var(--color-dark);
+        }
+
+        .pull-quote {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--color-accent);
+            margin: 2.5rem 0;
+            padding: 1rem;
+            line-height: 1.4;
+        }
+
+        .influences-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+            margin: 1.2rem 0 1.8rem;
+        }
+
+        .influences-grid .name {
+            padding: 0.6rem 1rem;
+            background: var(--color-white);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            border-left: 3px solid var(--color-accent);
+        }
+
+        .chapter:nth-of-type(odd) .influences-grid .name {
+            background: var(--color-warm);
+        }
+
+        /* Closing CTA */
+        .closing {
+            background: var(--color-dark);
+            color: var(--color-white);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .closing h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .closing p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            background: var(--color-accent);
+            color: var(--color-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: 3px;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            margin: 0.4rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: var(--color-accent-light);
+            box-shadow: 0 8px 25px rgba(201, 162, 39, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-white);
+            border: 2px solid var(--color-accent);
+            padding: 0.7rem 1.85rem;
+        }
+
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: var(--color-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: #0d0d1a;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        footer a:hover { color: var(--color-accent); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--color-dark);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 1rem;
+            }
+
+            nav ul.active { display: flex; }
+
+            .story-hero h1 { font-size: 2.4rem; }
+            .story-hero-content { padding: 3rem 1.5rem; }
+            .chapter h2 { font-size: 1.8rem; }
+            .influences-grid { grid-template-columns: 1fr; }
+            .pull-quote { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <a href="index.html" class="logo">Bruce Lande</a>
+    <button class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('active')" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+    <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#venues">Venues</a></li>
+        <li><a href="index.html#videos">Videos</a></li>
+        <li><a href="story.html" class="active">Story</a></li>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="epk.html">EPK</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Story Hero -->
+<section class="story-hero">
+    <div class="story-hero-content">
+        <div class="label">A Memoir in Progress</div>
+        <h1>Island in the Sea</h1>
+        <p class="subtitle">Six decades of guitar. The people who shaped it. And how a small town on the southern-facing coast of North Carolina became the island in the sea.</p>
+    </div>
+</section>
+
+<!-- Foreword -->
+<section class="chapter">
+    <div class="container">
+        <div class="chapter-label">Foreword &middot; Annapolis, MD &middot; July 5, 2024</div>
+        <h2>For the People Who Made the Music Possible</h2>
+        <p class="lead">This book is dedicated to the people who walked the road with me &mdash; the ones who handed me a guitar, the ones who came to the gigs, and the ones who are still listening.</p>
+
+        <h3>Dedications</h3>
+        <ul class="dedication-list">
+            <li><strong>Gay</strong> &mdash; my partner since 2016</li>
+            <li><strong>Sue</strong> &mdash; 45 years of friendship</li>
+            <li>My daughters: <strong>Michelle, Melanie, and Melissa</strong></li>
+            <li>The grandchildren and the family that came after</li>
+            <li>The musical influences who pointed the way</li>
+        </ul>
+
+        <h3>The Singer-Songwriters Who Shaped Me</h3>
+        <p>Long before I had songs of my own, I had theirs. These are the writers whose work I came back to over and over &mdash; the ones who proved a guitar and a story were enough.</p>
+        <div class="influences-grid">
+            <div class="name">Harry Chapin</div>
+            <div class="name">Townes Van Zandt</div>
+            <div class="name">Steve Earle</div>
+            <div class="name">John Prine</div>
+            <div class="name">Don McLean</div>
+            <div class="name">Bill Staines</div>
+            <div class="name">Bob Dylan</div>
+            <div class="name">Willie Nelson</div>
+            <div class="name">Guy Clark</div>
+            <div class="name">Johnny Cash</div>
+        </div>
+    </div>
+</section>
+
+<!-- Chapter One -->
+<section class="chapter">
+    <div class="container">
+        <div class="chapter-label">Chapter One</div>
+        <h2>The People in My Life</h2>
+
+        <p>It started in 1968. I had just left college and didn't know what I was doing with my life. My mother bought me my first guitar &mdash; <strong>a four-string nylon string</strong>. She didn't know I'd still be playing it, or some version of it, almost sixty years later.</p>
+
+        <p>My father wrote me a letter around the same time. Inside it was the poem <em>"Don't Quit."</em> I kept that poem.</p>
+
+        <h3>The Instruments &mdash; Thirteen Guitars and Counting</h3>
+        <p>Every guitar I own came from someone who mattered. They aren't just instruments &mdash; they're <em>people</em>, in a way. Each one carries the name of the person who gave it to me, or the day they handed it over.</p>
+        <ul class="dedication-list">
+            <li><strong>The first one</strong> &mdash; the four-string nylon, from my mother, 1968</li>
+            <li><strong>Marty</strong> &mdash; the workhorse, from Sue</li>
+            <li><strong>Silkie</strong> and <strong>Chester</strong> &mdash; from Gay</li>
+            <li><strong>Doncaster III</strong> &mdash; from Don</li>
+            <li>Plus eight more &mdash; thirteen in all</li>
+        </ul>
+
+        <p class="pull-quote">&ldquo;I adopted the name <em>Seeker4Life</em> years ago. It still fits.&rdquo;</p>
+
+        <h3>The Music That Got Me Here</h3>
+        <p>Before I picked up the guitar in earnest, the soundtrack was <strong>The Beatles, Simon and Garfunkel, Bob Dylan, CCR, The Eagles</strong>. Then a friend named Pasquale put a John Prine record in my hands and the road forked.</p>
+        <p>From there it was Harry Chapin, Willie Nelson, Townes Van Zandt, Johnny Cash, Guy Clark, Steve Earle &mdash; the storytellers. The guys who could put a whole life into three verses.</p>
+    </div>
+</section>
+
+<!-- Chapter Two -->
+<section class="chapter">
+    <div class="container">
+        <div class="chapter-label">Chapter Two</div>
+        <h2>The Island in the Sea Emerges from the Ocean</h2>
+
+        <p>Just before Memorial Day 2024, I walked into the front office at <strong>Beach Fun Rental</strong> in Holden Beach. I asked Deana, the woman at the front desk, if I could play guitar outside. She said she'd check with the owners, Justin and Amy. They said yes.</p>
+
+        <p>I've played there <strong>four days a week, eight to noon</strong>, ever since.</p>
+
+        <p>That's how the album that became <em>Island in the Sea</em> got its start. Not in a studio, not in a plan &mdash; in a folding chair on a sidewalk on the only southern-facing beach in the Carolinas, playing for whoever walked by with a coffee.</p>
+
+        <p>I started leaving spiral-bound notebooks on the picnic tables. I asked people to write down what they loved about the beach &mdash; what brought them here, what kept them coming back. Their words, not mine.</p>
+
+        <p>Here's some of what they wrote.</p>
+
+        <blockquote>
+            &ldquo;I love the clear skies and being mesmerized by all the twinkling stars at night.&rdquo;
+            <span class="attribution">&mdash; Debbie, South Miami Beach</span>
+        </blockquote>
+
+        <blockquote>
+            &ldquo;The only southern-facing beach in the Carolinas. There's nowhere else like it.&rdquo;
+            <span class="attribution">&mdash; Page and Billy, Oldsmar, FL</span>
+        </blockquote>
+
+        <blockquote>
+            &ldquo;The eternal peace of the wave sounds. That's what I come here for.&rdquo;
+            <span class="attribution">&mdash; Diego, Charlotte</span>
+        </blockquote>
+
+        <blockquote>
+            &ldquo;Fishing in the Sound.&rdquo;
+            <span class="attribution">&mdash; Michael and Ryan, Durham</span>
+        </blockquote>
+
+        <p>The lyric in the title track says it best:</p>
+
+        <p class="pull-quote">&ldquo;No high-rise life for me &mdash; entertainment here is free.&rdquo;</p>
+    </div>
+</section>
+
+<!-- Chapter Three: History -->
+<section class="chapter">
+    <div class="container">
+        <div class="chapter-label">Chapter Three</div>
+        <h2>The Old-Timers and the Way Things Used to Be</h2>
+
+        <p>Some of the best stories came from the people who'd been coming to Holden Beach for decades &mdash; the old-timers who remembered <strong>The Turn Bridge, The Ferry, and The Draw Bridge</strong>. The houses that used to stand on lots that are empty now. The ones that washed away. The ones that got rebuilt.</p>
+
+        <p>One afternoon someone told me about <strong>Grey's Diner</strong> &mdash; the place where the Walgreens stands today. He could still describe the menu.</p>
+
+        <p>Someone else mentioned the old gated campground at the east end &mdash; how you used to be able to drive right through. Now you can't.</p>
+
+        <h3>The Turtle Watch Patrol</h3>
+        <p>Holden Beach is a turtle sanctuary. The volunteers from the <strong>Turtle Watch Patrol</strong> walk the sand at sunrise looking for nests, marking them, protecting them, and &mdash; when the time comes &mdash; helping the hatchlings find their way to the water.</p>
+        <p>I see them out there every morning when I'm walking to the rental. They're some of the unsung heroes of this place.</p>
+    </div>
+</section>
+
+<!-- Back Page Thanks -->
+<section class="chapter">
+    <div class="container">
+        <div class="chapter-label">Back Page</div>
+        <h2>Thank Yous</h2>
+        <p>No music gets made alone. These are some of the people who made the music possible &mdash; the bandmates, the songwriters, the beach community, and everyone in between.</p>
+
+        <h3>The Bands</h3>
+        <ul class="dedication-list">
+            <li><strong>Reflections</strong> &mdash; and the original groupies who came to every gig</li>
+            <li>The <strong>Tuesday Night Open Mic</strong> crew &mdash; for showing up week after week</li>
+            <li>Bandmates: <strong>Dave, Pasquale, Wayne, Don, and Barry</strong></li>
+        </ul>
+
+        <h3>The Online Community</h3>
+        <ul class="dedication-list">
+            <li>Everyone from <strong>Giving Gigs</strong></li>
+            <li>The international roster of <strong>Performance Ready Musicians (PRMG)</strong></li>
+        </ul>
+
+        <h3>The Beach Community</h3>
+        <ul class="dedication-list">
+            <li><strong>Wil and Amy</strong></li>
+            <li><strong>Joe</strong></li>
+            <li><strong>JoAnn and Tim</strong></li>
+            <li><strong>Terry and Barry</strong></li>
+            <li>The <strong>Throndson clan</strong></li>
+            <li>And every face that ever stopped to listen</li>
+        </ul>
+
+        <p class="pull-quote">&ldquo;If you ever wrote in one of my notebooks, you're in this book too.&rdquo;</p>
+    </div>
+</section>
+
+<!-- Closing CTA -->
+<section class="closing">
+    <div class="container">
+        <h2>More to Come</h2>
+        <p><em>Island in the Sea</em> is a memoir-in-progress &mdash; new chapters get written between morning sets at The Scoop and quiet evenings on the back porch. Come back every now and then. There will be more.</p>
+        <a href="index.html" class="btn">Back to Home</a>
+        <a href="lessons.html" class="btn btn-outline">Guitar Lessons</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Bruce Lande. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="epk.html">EPK</a> &nbsp;|&nbsp; <a href="lessons.html">Lessons</a></p>
+</footer>
+
+<script>
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.querySelector('nav ul').classList.remove('active');
+        });
+    });
+</script>
+
+</body>
+</html>

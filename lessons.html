@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Lessons &amp; TAB Files | Bruce Lande</title>
+    <meta name="description" content="Guitar Pro TAB files and scrolling-tab tutorial videos from Bruce Lande. Learn classic songs like Across the Borderline, Misty, and Wonderful Tonight with professional tablature and play-along videos.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --color-dark: #1a1a2e;
+            --color-accent: #c9a227;
+            --color-accent-light: #e6c655;
+            --color-warm: #f5f0e8;
+            --color-white: #ffffff;
+            --color-text: #2c2c2c;
+            --color-muted: #6b6b6b;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Open Sans', Arial, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            line-height: 1.6;
+            background: var(--color-white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        nav ul { list-style: none; display: flex; gap: 1.8rem; }
+
+        nav ul li a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active { color: var(--color-accent); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px; height: 3px;
+            background: var(--color-white);
+            margin: 5px 0;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: var(--color-dark);
+            color: var(--color-white);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .page-hero .label {
+            font-size: 0.85rem;
+            color: var(--color-accent-light);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .page-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+        }
+
+        .page-hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.7;
+        }
+
+        /* Sections */
+        section { padding: 5rem 2rem; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--color-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-header .divider {
+            width: 60px; height: 3px;
+            background: var(--color-accent);
+            margin: 0 auto;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        /* Intro */
+        .intro {
+            background: var(--color-warm);
+            padding: 4rem 2rem;
+        }
+
+        .intro-text {
+            max-width: 750px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .intro-text p {
+            font-size: 1.05rem;
+            color: var(--color-text);
+            line-height: 1.85;
+            margin-bottom: 1rem;
+        }
+
+        .intro-text strong { color: var(--color-dark); }
+
+        /* Product Grid */
+        .products { background: var(--color-white); }
+
+        .product {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 5rem;
+            padding-bottom: 5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .product:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .product:nth-child(even) {
+            grid-template-columns: 1.2fr 1fr;
+        }
+
+        .product:nth-child(even) .product-media {
+            order: 2;
+        }
+
+        .product-media .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-media .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .product-media .product-cover {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            background: var(--color-dark);
+        }
+
+        .product-media .product-cover img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .product-info .product-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-dark);
+            margin-bottom: 0.4rem;
+            line-height: 1.2;
+        }
+
+        .product-info .original-artist {
+            font-size: 1rem;
+            color: var(--color-muted);
+            font-style: italic;
+            margin-bottom: 1.2rem;
+        }
+
+        .product-info .description {
+            color: var(--color-text);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 0.98rem;
+        }
+
+        .product-info .features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-info .features li {
+            padding: 0.4rem 0;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+        }
+
+        .product-info .features li::before {
+            content: '\2713';
+            color: var(--color-accent);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .product-info .price-row {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .product-info .price {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-dark);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            background: var(--color-accent);
+            color: var(--color-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: 3px;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: var(--color-accent-light);
+            box-shadow: 0 8px 25px rgba(201, 162, 39, 0.35);
+        }
+
+        /* How it works */
+        .how-it-works {
+            background: var(--color-dark);
+            color: var(--color-white);
+        }
+
+        .how-it-works .section-header h2 {
+            color: var(--color-white);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step .number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            color: var(--color-dark);
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+        }
+
+        .step h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+            color: var(--color-white);
+        }
+
+        .step p {
+            color: rgba(255,255,255,0.78);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Tip Jar */
+        .tip-jar {
+            background: var(--color-warm);
+            text-align: center;
+        }
+
+        .tip-jar h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+        }
+
+        .tip-jar p {
+            color: var(--color-text);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 650px;
+            margin: 0 auto 2rem;
+        }
+
+        .bmac-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 2.2rem;
+            background: #FFDD00;
+            color: #000000;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 6px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        }
+
+        .bmac-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #0d0d1a;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        footer a:hover { color: var(--color-accent); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .product, .product:nth-child(even) {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .product:nth-child(even) .product-media {
+                order: 0;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--color-dark);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 1rem;
+            }
+
+            nav ul.active { display: flex; }
+
+            .page-hero h1 { font-size: 2.2rem; }
+            .product-info h3 { font-size: 1.6rem; }
+            .section-header h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <a href="index.html" class="logo">Bruce Lande</a>
+    <button class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('active')" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+    <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#venues">Venues</a></li>
+        <li><a href="index.html#videos">Videos</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="lessons.html" class="active">Lessons</a></li>
+        <li><a href="epk.html">EPK</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Page Hero -->
+<section class="page-hero">
+    <div class="label">Guitar Tutorials &amp; TAB Files</div>
+    <h1>Lessons</h1>
+    <p>Scrolling-tab tutorial videos and Guitar Pro TAB files for the songs I love to play. Watch the videos free on YouTube &mdash; or get the full Guitar Pro file with fretboard, lyrics, and multi-track audio.</p>
+</section>
+
+<!-- Intro -->
+<section class="intro">
+    <div class="intro-text">
+        <p>I've been playing guitar for over <strong>six decades</strong>. Along the way I've picked up the songs three generations of audiences love to hear &mdash; and I've spent a lot of time figuring out the chord voicings, the picking patterns, and the little fills that bring them to life.</p>
+        <p>These tutorial videos and TAB files are the result. Each one walks through a song with scrolling tablature and full Guitar Pro support so you can practice at your own speed, loop the hard parts, and play along.</p>
+    </div>
+</section>
+
+<!-- Products -->
+<section class="products">
+    <div class="container">
+        <div class="section-header">
+            <h2>Available Now</h2>
+            <div class="divider"></div>
+        </div>
+
+        <!-- Product 1: Across the Borderline -->
+        <div class="product">
+            <div class="product-media">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/hehx9gOL6Hc" title="Across the Borderline - Scrolling Guitar TABS" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-label">Guitar Pro TAB &amp; Tutorial Video</div>
+                <h3>Across the Borderline</h3>
+                <div class="original-artist">Originally by Ry Cooder &middot; Made famous by Willie Nelson</div>
+                <p class="description">A haunting border ballad about hope, sacrifice, and the long walk toward a better life. Beautiful fingerpicking and a melody that sits perfectly on the acoustic guitar.</p>
+                <ul class="features">
+                    <li>Full Guitar Pro file with multiple tracks</li>
+                    <li>Scrolling tablature view (free on YouTube)</li>
+                    <li>Complete lyrics with chord positions</li>
+                    <li>Fretboard diagrams for every section</li>
+                </ul>
+                <div class="price-row">
+                    <div class="price">$5</div>
+                    <a href="mailto:bruce.lande@gmail.com?subject=Guitar%20Pro%20TAB%20Request%20-%20Across%20the%20Borderline&amp;body=Hi%20Bruce%2C%0A%0AI%27d%20like%20to%20get%20the%20Guitar%20Pro%20TAB%20file%20for%20Across%20the%20Borderline.%20Please%20let%20me%20know%20how%20to%20pay%20and%20receive%20the%20file.%0A%0AThanks%21" class="btn">Request TAB File</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 2: Wonderful Tonight -->
+        <div class="product">
+            <div class="product-media">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/qiV_8GcZyvk" title="Wonderful Tonight - Scrolling Guitar TABS" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-label">Guitar Pro TAB &amp; Tutorial Video</div>
+                <h3>Wonderful Tonight</h3>
+                <div class="original-artist">Eric Clapton</div>
+                <p class="description">One of the most requested songs at every gig I play. Clapton's signature ballad is built on a few simple shapes &mdash; but the magic is in the timing and the little melodic fills between the verses.</p>
+                <ul class="features">
+                    <li>Full Guitar Pro file with multiple tracks</li>
+                    <li>Scrolling tablature view (free on YouTube)</li>
+                    <li>Complete lyrics with chord positions</li>
+                    <li>Fretboard diagrams for the signature fills</li>
+                </ul>
+                <div class="price-row">
+                    <div class="price">$5</div>
+                    <a href="mailto:bruce.lande@gmail.com?subject=Guitar%20Pro%20TAB%20Request%20-%20Wonderful%20Tonight&amp;body=Hi%20Bruce%2C%0A%0AI%27d%20like%20to%20get%20the%20Guitar%20Pro%20TAB%20file%20for%20Wonderful%20Tonight.%20Please%20let%20me%20know%20how%20to%20pay%20and%20receive%20the%20file.%0A%0AThanks%21" class="btn">Request TAB File</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 3: Misty -->
+        <div class="product">
+            <div class="product-media">
+                <div class="product-cover">
+                    <img src="images/tab-misty.png" alt="Misty - Guitar Pro TAB cover" loading="lazy" style="width:100%;background:#1a1a2e;padding:3rem;">
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-label">Guitar Pro TAB</div>
+                <h3>Misty</h3>
+                <div class="original-artist">Erroll Garner &middot; Lyrics by Johnny Burke</div>
+                <p class="description">The standard. Erroll Garner's jazz ballad arranged for solo acoustic guitar &mdash; lush voicings, walking bass lines, and the kind of chord melody that sounds like two guitars at once.</p>
+                <ul class="features">
+                    <li>Full Guitar Pro file with multiple tracks</li>
+                    <li>Complete lyrics with chord positions</li>
+                    <li>Fretboard diagrams for every chord voicing</li>
+                    <li>Optimized for solo acoustic performance</li>
+                </ul>
+                <div class="price-row">
+                    <div class="price">$5</div>
+                    <a href="mailto:bruce.lande@gmail.com?subject=Guitar%20Pro%20TAB%20Request%20-%20Misty&amp;body=Hi%20Bruce%2C%0A%0AI%27d%20like%20to%20get%20the%20Guitar%20Pro%20TAB%20file%20for%20Misty.%20Please%20let%20me%20know%20how%20to%20pay%20and%20receive%20the%20file.%0A%0AThanks%21" class="btn">Request TAB File</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-it-works">
+    <div class="container">
+        <div class="section-header">
+            <h2>How It Works</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="steps-grid">
+            <div class="step">
+                <div class="number">1</div>
+                <h4>Watch Free</h4>
+                <p>Every tutorial video is hosted free on YouTube. Click any video above to watch the scrolling tabs play through the song.</p>
+            </div>
+            <div class="step">
+                <div class="number">2</div>
+                <h4>Request the File</h4>
+                <p>Want the full Guitar Pro file with all the tracks, fretboard diagrams, and audio? Click "Request TAB File" and I'll get back to you within 24 hours.</p>
+            </div>
+            <div class="step">
+                <div class="number">3</div>
+                <h4>Practice &amp; Play</h4>
+                <p>Open the file in Guitar Pro (or any TuxGuitar / TablEdit reader) and practice at your own pace. Loop the hard parts. Slow them down. Make it yours.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tip Jar -->
+<section class="tip-jar">
+    <div class="container">
+        <h2>Buy Me a Coffee</h2>
+        <p>If these tutorials helped you learn a song, or if you just enjoy the music, you can drop a tip in the jar. Every coffee keeps the videos coming.</p>
+        <a href="https://buymeacoffee.com/brucelande" target="_blank" rel="noopener" class="bmac-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            Buy Bruce a Coffee
+        </a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Bruce Lande. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="epk.html">EPK</a> &nbsp;|&nbsp; <a href="story.html">Story</a></p>
+</footer>
+
+<script>
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.querySelector('nav ul').classList.remove('active');
+        });
+    });
+</script>
+
+</body>
+</html>
