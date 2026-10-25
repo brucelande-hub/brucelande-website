@@ -399,6 +399,20 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Live demo row (Key Signature demos A, B, D under the featured demo C) */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .demo-grid .video-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            margin-bottom: 0.6rem;
+            text-align: center;
+        }
+
         /* Venues */
         .venues { background: var(--color-white); }
 
@@ -942,6 +956,27 @@
                 <iframe src="https://www.youtube.com/embed/XC3uMkXy9yc" title="Bruce Lande - Beach &amp; Sing-Along Live Demo (Wagon Wheel, Toes, Buy Me a Boat, Sweet Caroline)" allowfullscreen loading="lazy"></iframe>
             </div>
             <p class="featured-video-caption">Private clubs, corporate events, weddings &amp; restaurants across Eastern North Carolina. Call or text <a href="tel:+19108808960">(910) 880-8960</a> to book.</p>
+        </div>
+        <p class="more-videos-label">More Live Demos</p>
+        <div class="demo-grid">
+            <div class="video-card">
+                <h3>Country &amp; Americana</h3>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/yBxMyYbpbMk" title="Bruce Lande - Country &amp; Americana Live Demo (Country Roads, The Hills of Caroline, Good Ole Boys Like Me)" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="video-card">
+                <h3>Ballads &amp; Classics</h3>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/0IwQm7eCApg" title="Bruce Lande - Ballads &amp; Classics Live Demo (The Sound of Silence, Lonesome Town, Remember When)" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="video-card">
+                <h3>Blues &amp; Rock and Roll</h3>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/oUARzJAninA" title="Bruce Lande - Blues &amp; Rock and Roll Live Demo (Before You Accuse Me, Old Time Rock &amp; Roll, Kansas City, Folsom Prison Blues)" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
         </div>
         <p class="more-videos-label">More Performances</p>
         <div class="video-grid">
